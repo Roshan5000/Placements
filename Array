@@ -299,6 +299,55 @@ int main() {
 
     return 0;
 }
+_____________________________________________________________________________________________________________________________________________________________________________
+10.Write a program  to delete the value at given position from the array.
+#include <stdio.h>
+
+void deleteElement(int arr[], int *size, int position) {
+    if (position < 0 || position >= *size) {
+        printf("Invalid position!\n");
+        return;
+    }
+
+    for (int i = position; i < *size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    // Decrease the size of the array
+    (*size)--;
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[100]; 
+    int size, position;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the position to delete (0 to %d): ", size - 1);
+    scanf("%d", &position);
+
+    deleteElement(arr, &size, position);
+
+    printf("Array after deletion:\n");
+    printArray(arr, size);
+
+    return 0;
+}
+________________________________________________________________________________________________________________________________________________________________________________
+
 
 
 
