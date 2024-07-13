@@ -64,6 +64,98 @@ int main() {
     return 0;
 }
 ____________________________________________________________________________________________________________________________________________|
+4.Write a program in C to count the total number of vowels or consonants in a string.
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100]; 
+    int vowels = 0, consonants = 0;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); 
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]); 
+        if (isalpha(ch)) { 
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels++; 
+            } else {
+                consonants++; 
+}
+        }
+    }
+
+    printf("Total vowels: %d\n", vowels);
+    printf("Total consonants: %d\n", consonants);
+
+    return 0;
+}
+____________________________________________________________________________________________________________________________________________________________|
+5.Write a program in C to convert string to uppercase
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]); 
+    }
+
+    printf("Uppercase string: %s", str);
+
+    return 0;
+}
+_____________________________________________________________________________________________________________________________________________________________________________|
+6.Write a program in C to convert string to lowercase
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100]; 
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); 
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = tolower(str[i]);
+    }
+
+    printf("Lowercase string: %s", str);
+
+    return 0;
+}
+_______________________________________________________________________________________________________________________________________________________________________|\
+7.Write a program in C to convert string to toggle case	
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); 
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (isupper(str[i])) {
+            str[i] = tolower(str[i]); 
+        } else if (islower(str[i])) {
+            str[i] = toupper(str[i]);
+        }
+    }
+
+    printf("Toggle case string: %s", str);
+
+    return 0;
+}
+_______________________________________________________________________________________________________________________________________________________________________
+
+
+
+
 
 
 
