@@ -347,6 +347,252 @@ int main() {
     return 0;
 }
 ________________________________________________________________________________________________________________________________________________________________________________
+11.Write a program  to swap every pair of  adjacent array elements
+#include <stdio.h>
+
+void swapAdjacent(int arr[], int n) {
+    for (int i = 0; i < n - 1; i += 2) {
+        int temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    swapAdjacent(arr, n);
+
+    printf("Array after swapping adjacent elements:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+______________________________________________________________________________________________________________________________________________________
+12.Write a program  to left rotate for given times of an array elements
+#include <stdio.h>
+
+void leftRotate(int arr[], int n, int d) {
+    d = d % n; 
+    int temp[d];
+
+    for (int i = 0; i < d; i++) {
+        temp[i] = arr[i];
+    }
+
+    for (int i = 0; i < n - d; i++) {
+        arr[i] = arr[i + d];
+    }
+
+    for (int i = 0; i < d; i++) {
+        arr[n - d + i] = temp[i];
+    }
+}
+
+int main() {
+    int n, d;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the number of left rotations: ");
+    scanf("%d", &d);
+
+    leftRotate(arr, n, d);
+
+    printf("Array after %d left rotations:\n", d);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+__________________________________________________________________________________________________________________________________________________________--
+13.Given an array X with n number of elements, return true if the given array X is sorted else return false. You may consider multiple positions may be shifted in the array X. 
+Example 1: Input: X=[1,2,3,4,5] Output: true 
+Example 2: Input: X=[3,4,5, 1,2,] Output: true
+Example 3: Input: X=[3,1,2,4,5] Output: false
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isRotatedSorted(int arr[], int n) {
+    int count = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > arr[(i + 1) % n]) {
+            count++;
+        }
+    }
+
+    return count <= 1;
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    if (isRotatedSorted(arr, n)) {
+        printf("The array is sorted (considering rotations).\n");
+    } else {
+        printf("The array is not sorted (considering rotations).\n");
+    }
+
+    return 0;
+}
+_____________________________________________________________________________________________________________________________________________________________________}
+14.Write a program  to remove the duplicates in an array .
+#include <stdio.h>
+
+void removeDuplicates(int arr[], int *n) {
+    int temp[*n]; 
+    int j = 0;    
+
+    for (int i = 0; i < *n; i++) {
+
+        int found = 0;
+        for (int k = 0; k < j; k++) {
+            if (arr[i] == temp[k]) {
+                found = 1;
+                break;
+            }
+        }
+  
+        if (!found) {
+            temp[j++] = arr[i];
+        }
+    }
+
+    for (int i = 0; i < j; i++) {
+        arr[i] = temp[i];
+    }
+    
+    *n = j; 
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    removeDuplicates(arr, &n);
+
+    printf("Array after removing duplicates:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+__________________________________________________________________________________________________________________________________________________________________
+15.Write a program  to find second largest and second smallest in array
+#include <stdio.h>
+#include <limits.h>
+
+void findSecondLargestAndSmallest(int arr[], int n, int *secondLargest, int *secondSmallest) {
+    int largest = INT_MIN, secondLargestTemp = INT_MIN;
+    int smallest = INT_MAX, secondSmallestTemp = INT_MAX;
+
+    for (int i = 0; i < n; i++) 
+        if (arr[i] > largest) {
+            secondLargestTemp = largest;
+            largest = arr[i];
+        } else if (arr[i] > secondLargestTemp && arr[i] < largest) {
+            secondLargestTemp = arr[i];
+        }
+        if (arr[i] < smallest) {
+            secondSmallestTemp = smallest;
+            smallest = arr[i];
+        } else if (arr[i] < secondSmallestTemp && arr[i] > smallest) {
+            secondSmallestTemp = arr[i];
+        }
+    }
+
+    *secondLargest = secondLargestTemp;
+    *secondSmallest = secondSmallestTemp;
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    if (n < 2) {
+        printf("Array must have at least two elements.\n");
+        return 1;
+    }
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int secondLargest, secondSmallest;
+    findSecondLargestAndSmallest(arr, n, &secondLargest, &secondSmallest);
+
+    if (secondLargest == INT_MIN) {
+        printf("There is no second largest element.\n");
+    } else {
+        printf("Second largest element is: %d\n", secondLargest);
+    }
+
+    if (secondSmallest == INT_MAX) {
+        printf("There is no second smallest element.\n");
+    } else {
+        printf("Second smallest element is: %d\n", secondSmallest);
+    }
+
+    return 0;
+}
+_______________________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
 
 
 
