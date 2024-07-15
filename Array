@@ -85,33 +85,36 @@ ________________________________________________________________________________
 4.Write a  Program to print all the repeated elements in a sorted array.
 #include <stdio.h>
 
-int main() {
-    int arr[100]; 
-    int N;
+void printRepeatedElements(int arr[], int size) {
+    int i;
+    printf("Repeated elements in the sorted array are: ");
+    for (i = 0; i < size - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            printf("%d ", arr[i]);
+            // Skip over the repeated elements
+            while (arr[i] == arr[i + 1]) {
+                i++;
+            }
+        }
+    }
+    printf("\n");
+}
 
-    printf("Enter the number of elements: ");
-    scanf("%d", &N)
-    printf("Enter %d sorted elements:\n", N);
-    for (int i = 0; i < N; i++) {
-        scanf("%d", &arr[i]);
+int main() {
+    int arr[] = {1,1,1,2,4,5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Given sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
     }
-    printf("Repeated elements in the sorted array:\n");
-    int i = 0;
-    while (i < N) 
-        int count = 1;
-        while (i < N - 1 && arr[i] == arr[i + 1]) {
-            count++;
-            i++;
-        }
-        if (count > 1) {
-            printf("%d (repeated %d times)\n", arr[i], count);
-        }
-        
-        i++;
-    }
+    printf("\n");
+
+    printRepeatedElements(arr, size);
 
     return 0;
 }
+
 __________________________________________________________________________________________________________________________________________________________________________
 5.Write a program to search an element in the given array and print the searched elements index. If no such elements were found print -1
 #include <stdio.h>
